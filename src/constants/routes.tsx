@@ -12,7 +12,7 @@ export const routes: IRoute[] = [
     element: <Location />
   },
   {
-    path: "/locations/update/:locationId",
+    path: "/locations/:locationId",
     element: <Location isUpdating />
   }
 ];
