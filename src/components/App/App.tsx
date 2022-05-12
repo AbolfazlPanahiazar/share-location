@@ -6,7 +6,6 @@ import Router from "components/Router/Router";
 const App: FC = () => {
   return (
     <Provider>
-      share location
       <Router />
     </Provider>
   );
