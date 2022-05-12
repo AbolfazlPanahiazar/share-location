@@ -8,7 +8,7 @@ export const routes: IRoute[] = [
     element: <Home />
   },
   {
-    path: "/locations/add",
+    path: "/locations/new",
     element: <Location />
   },
   {

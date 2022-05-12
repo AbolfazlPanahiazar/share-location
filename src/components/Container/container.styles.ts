@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #ccc;
+  background-color: #aaa;
   display: flex;
   justify-content: center;
 `;

@@ -6,6 +6,10 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid #666;
+  border-radius: 5px;
+  padding: 0 1rem;
+  margin-top: 0.2rem;
 `;
 
 export const Navbar = styled.div`
@@ -16,6 +20,9 @@ export const Navbar = styled.div`
 
 export const NavigationLink = styled.a`
   text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0.5rem;
 `;
 
 export const TitleWrapper = styled.div`
@@ -25,5 +32,6 @@ export const TitleWrapper = styled.div`
 `;
 
 export const HeaderTitle = styled.div`
-  font-size: 3rem;
+  font-size: 2rem;
+  font-weight: 900;
 `;
