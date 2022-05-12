@@ -1,11 +1,20 @@
 {
   "locations": [
     {
-      "title": "Tehran International Book Fair",
+      "title": "Tehran International Book Fair 2",
       "lat": 35.7355059,
       "long": 51.4259572,
       "type": "FAIR",
-      "logo": "./logos/logo1.jpg"
+      "logo": "./logos/logo1.jpg",
+      "id": 1
+    },
+    {
+      "title": "test",
+      "lat": 3,
+      "long": 2,
+      "type": "BUSINESS",
+      "logo": "link",
+      "id": 2
     }
   ]
 }
