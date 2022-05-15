@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { TextInput, SelectInput, MapInput } from "components/common";
+import { TextInput, SelectInput, MapInput, ImageInput } from "components/common";
 import { Form } from "./locationForm.styles";
 import { LocationType } from "types";
 
@@ -14,6 +14,7 @@ export const LocationForm: FC = () => {
         <option value={LocationType.FAIR}>Fair</option>
       </SelectInput>
       <MapInput placeholder="Select your location:" locationType={LocationType.BUSINESS} />
+      <ImageInput placeholder="Upload a photo:" />
     </Form>
   );
 };
