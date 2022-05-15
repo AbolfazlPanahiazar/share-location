@@ -1,27 +1,29 @@
 import { FC } from "react";
-import { LatLngExpression } from "leaflet";
-import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 
-import fairPin from "components/pins/FairPin";
-import homePin from "components/pins/HomePin";
-import bussinesPin from "components/pins/BusinessPin";
+import MapMarker from "components/MapMarker/MapMarker";
 import { LocationPinnerContainer } from "./locationPinner.styles";
+import { ILocation } from "types";
 
-const position: LatLngExpression = [51.505, -0.09];
+interface ILocationPinnerProps {
+  locations: ILocation[];
+}
 
-const LocationPinner: FC = () => {
+const LocationPinner: FC<ILocationPinnerProps> = ({ locations }) => {
   return (
     <LocationPinnerContainer>
-      <MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ height: 700 }}>
+      <MapContainer
+        center={[locations[0].lat, locations[0].long]}
+        zoom={13}
+        scrollWheelZoom={false}
+        style={{ height: 700 }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position} icon={bussinesPin}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        {locations.map((location) => (
+          <MapMarker key={location.id} location={location} />
+        ))}
       </MapContainer>
     </LocationPinnerContainer>
   );

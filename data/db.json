@@ -5,7 +5,7 @@
       "lat": 35.7355059,
       "long": 51.4259572,
       "type": "FAIR",
-      "logo": "./logos/logo1.jpg",
+      "logo": "https://picsum.photos/200",
       "id": 1
     }
   ]

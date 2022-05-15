@@ -1,8 +1,14 @@
+export enum LocationType {
+  HOME = "HOME",
+  FAIR = "FAIR",
+  BUSINESS = "BUSINESS"
+}
+
 export interface ILocation {
   id?: number;
   title: string;
   lat: number;
   long: number;
-  type: "HOME" | "FAIR" | "BUSINESS";
+  type: LocationType;
   logo: string;
 }
