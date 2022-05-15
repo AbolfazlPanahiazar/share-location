@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import "leaflet/dist/leaflet.css";
 
 interface IProviderProps {
   children: ReactNode;
