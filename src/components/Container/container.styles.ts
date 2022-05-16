@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const ContainerWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
-  background-color: cyan;
+  min-height: 100vh;
+  background-color: #282828;
   display: flex;
   justify-content: center;
 `;

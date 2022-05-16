@@ -12,4 +12,5 @@ export const InputLabel = styled.label`
   font-weight: bold;
   color: black;
   margin-bottom: 5px;
+  color: #e3e3e3;
 `;

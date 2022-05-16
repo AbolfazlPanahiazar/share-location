@@ -6,10 +6,12 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid #666;
-  border-radius: 5px;
+  border-bottom: 1px solid #767676;
   padding: 0 1rem;
-  margin-top: 0.2rem;
+  margin: 0.2rem 0;
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+  }
 `;
 
 export const Navbar = styled.div`
@@ -23,6 +25,14 @@ export const NavigationLink = styled.a`
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0.5rem;
+  color: #e3e3e3;
+  transition: all ease-in-out 0.2s;
+  &:hover {
+    color: #888;
+  }
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
 `;
 
 export const TitleWrapper = styled.div`
@@ -34,4 +44,8 @@ export const TitleWrapper = styled.div`
 export const HeaderTitle = styled.div`
   font-size: 2rem;
   font-weight: 900;
+  color: #e3e3e3;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
