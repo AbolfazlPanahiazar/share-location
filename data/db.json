@@ -7,6 +7,22 @@
       "type": "FAIR",
       "logo": "https://picsum.photos/200",
       "id": 1
+    },
+    {
+      "title": "Tehroonchi",
+      "type": "BUSINESS",
+      "lat": 35.74085210195421,
+      "long": 51.42464012935245,
+      "logo": "https://picsum.photos/200",
+      "id": 2
+    },
+    {
+      "type": "HOME",
+      "title": "My apartment",
+      "lat": 35.744892625050824,
+      "long": 51.40900036951309,
+      "logo": "https://picsum.photos/200",
+      "id": 3
     }
   ]
 }

@@ -1,13 +1,14 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
 import { InputContainer, InputLabel, Section, SelectedImage } from "./imageInput.styles";
 
 interface IImageInputProps {
   placeholder: string;
+  handleSelectLogo: (l: string) => void;
 }
 
-export const ImageInput: FC<IImageInputProps> = ({ placeholder }) => {
+export const ImageInput: FC<IImageInputProps> = ({ placeholder, handleSelectLogo }) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
     accept: {
@@ -18,6 +19,12 @@ export const ImageInput: FC<IImageInputProps> = ({ placeholder }) => {
       "image/png": []
     }
   });
+
+  useEffect(() => {
+    if (acceptedFiles.length) {
+      handleSelectLogo("https://picsum.photos/200");
+    }
+  }, [acceptedFiles]);
 
   return (
     <InputContainer>

@@ -1,6 +1,8 @@
 import { FC, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
+import { LatLng } from "leaflet";
 
 import { Create_Location, Update_Location } from "api";
 import { TextInput, SelectInput, MapInput, ImageInput, Button } from "components/common";
@@ -13,7 +15,32 @@ interface ILocationFormProps {
 }
 
 export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocation }) => {
-  const { register, watch, handleSubmit, setValue, reset } = useForm<ILocation>();
+  const navigate = useNavigate();
+  const { handleSubmit, reset, setValue, getValues } = useForm<ILocation>({
+    defaultValues: {
+      type: LocationType.HOME
+    }
+  });
+
+  const { mutate: createLocation } = useMutation(Create_Location, {
+    onSuccess: () => {
+      navigate("/");
+    },
+    onError: (e) => {
+      // toast error
+      console.log(e);
+    }
+  });
+
+  const { mutate: editLocation } = useMutation(Update_Location, {
+    onSuccess: () => {
+      navigate("/");
+    },
+    onError: (e) => {
+      // toast error
+      console.log(e);
+    }
+  });
 
   useEffect(() => {
     if (isUpdating && updatingLocation?.title) {
@@ -24,23 +51,47 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
   }, []);
 
   const onSubmit: SubmitHandler<ILocation> = (data) => {
+    // validate data
     if (isUpdating) {
-      console.log("edit");
+      editLocation({ ...data });
     } else {
-      console.log("create");
+      createLocation({ ...data });
     }
+  };
+
+  const handleSelectLocation = (selectedLocation: LatLng) => {
+    console.log(selectedLocation);
+
+    setValue("lat", selectedLocation.lat);
+    setValue("long", selectedLocation.lng);
+  };
+
+  const handleSelectLogo = (selectedLogo: string) => {
+    setValue("logo", selectedLogo);
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <TextInput placeholder="Location Title:" {...register("title")} />
-      <SelectInput placeholder="Location Type:" {...register("type")}>
+      <TextInput
+        placeholder="Location Title:"
+        value={getValues("title")}
+        onChange={(e) => setValue("title", e.target.value)}
+      />
+      <SelectInput
+        placeholder="Location Type:"
+        value={getValues("type")}
+        defaultValue={LocationType.HOME}
+        onChange={(e) => setValue("type", e.target.value as LocationType)}>
         <option value={LocationType.HOME}>Home</option>
         <option value={LocationType.BUSINESS}>Business</option>
         <option value={LocationType.FAIR}>Fair</option>
       </SelectInput>
-      <MapInput placeholder="Select your location:" locationType={LocationType.BUSINESS} />
-      <ImageInput placeholder="Upload a photo:" />
+      <MapInput
+        placeholder="Select your location:"
+        locationType={LocationType.HOME}
+        handleSelectLocation={handleSelectLocation}
+      />
+      <ImageInput placeholder="Upload a photo:" handleSelectLogo={handleSelectLogo} />
       <Button type="submit">Submit</Button>
     </Form>
   );
