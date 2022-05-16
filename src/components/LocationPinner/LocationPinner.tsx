@@ -16,7 +16,7 @@ const LocationPinner: FC<ILocationPinnerProps> = ({ locations }) => {
         center={[locations[0].lat, locations[0].long]}
         zoom={13}
         scrollWheelZoom={false}
-        style={{ height: 700 }}>
+        style={{ height: 400 }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
