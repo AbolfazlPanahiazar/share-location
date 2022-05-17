@@ -13,7 +13,7 @@ class ErrorBoundary extends Component<IErrorBoundryProps, IErrorBoundaryState> {
     hasError: false
   };
 
-  public static getDerivedStateFromError(_: Error): IErrorBoundaryState {
+  public static getDerivedStateFromError(): IErrorBoundaryState {
     return { hasError: true };
   }
 

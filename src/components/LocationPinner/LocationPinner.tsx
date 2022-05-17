@@ -13,7 +13,7 @@ const LocationPinner: FC<ILocationPinnerProps> = ({ locations }) => {
   return (
     <LocationPinnerContainer>
       <MapContainer
-        center={[locations[0].lat, locations[0].long]}
+        center={[35.74935089529708, 51.421337127685554]}
         zoom={13}
         scrollWheelZoom={false}
         style={{ height: 400 }}>

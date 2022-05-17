@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
 import { LatLng } from "leaflet";
@@ -16,8 +16,9 @@ interface ILocationFormProps {
 
 export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocation }) => {
   const navigate = useNavigate();
-  const { handleSubmit, reset, setValue, getValues, watch } = useForm<ILocation>({
+  const { handleSubmit, reset, setValue, watch } = useForm<ILocation>({
     defaultValues: {
+      title: "",
       type: LocationType.HOME
     }
   });
@@ -31,7 +32,7 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
   const { mutate: createLocation } = useMutation(Create_Location, {
     onSuccess: () => {
       // toast success
-      navigate("/");
+      window.location.replace("/");
     },
     onError: (e) => {
       // toast error
@@ -42,7 +43,7 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
   const { mutate: editLocation } = useMutation(Update_Location, {
     onSuccess: () => {
       // toast success
-      // navigate("/");
+      window.location.replace("/");
     },
     onError: (e) => {
       // toast error
@@ -88,7 +89,6 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
       <SelectInput
         placeholder="Location Type:"
         value={type}
-        defaultValue={LocationType.HOME}
         onChange={(e) => setValue("type", e.target.value as LocationType)}>
         <option value={LocationType.HOME}>Home</option>
         <option value={LocationType.BUSINESS}>Business</option>

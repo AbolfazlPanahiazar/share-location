@@ -20,7 +20,7 @@ export const Navbar = styled.div`
   align-items: center;
 `;
 
-export const NavigationLink = styled.a`
+export const NavigationLink = styled.span`
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: 700;

@@ -1,5 +1,5 @@
+import { FC, useEffect } from "react";
 import { LatLng } from "leaflet";
-import { FC, useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 
 import { getLocationPin } from "helpers";

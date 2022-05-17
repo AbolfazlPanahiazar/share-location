@@ -2,25 +2,25 @@
   "locations": [
     {
       "title": "Tehran International Book Fair",
-      "lat": 35.7355059,
-      "long": 51.4259572,
+      "lat": 35.7432207093313,
+      "long": 51.43060684204102,
       "type": "FAIR",
       "logo": "https://picsum.photos/200",
       "id": 1
     },
     {
-      "title": "Tehroonchissf",
+      "title": "asdfTehroonchissf",
       "type": "BUSINESS",
-      "lat": 35.74085210195421,
-      "long": 51.42464012935245,
+      "lat": 35.734860604041145,
+      "long": 51.4347267150879,
       "logo": "https://picsum.photos/200",
       "id": 2
     },
     {
       "type": "HOME",
       "title": "My apartment1234",
-      "lat": 35.758127385072264,
-      "long": 51.42047882080079,
+      "lat": 35.73527863015312,
+      "long": 51.41344070434571,
       "logo": "https://picsum.photos/200",
       "id": 3
     }
