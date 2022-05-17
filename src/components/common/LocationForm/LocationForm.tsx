@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
 import { LatLng } from "leaflet";
@@ -30,6 +30,7 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
 
   const { mutate: createLocation } = useMutation(Create_Location, {
     onSuccess: () => {
+      // toast success
       navigate("/");
     },
     onError: (e) => {
@@ -40,7 +41,8 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
 
   const { mutate: editLocation } = useMutation(Update_Location, {
     onSuccess: () => {
-      navigate("/");
+      // toast success
+      // navigate("/");
     },
     onError: (e) => {
       // toast error
