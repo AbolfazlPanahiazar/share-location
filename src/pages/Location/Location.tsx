@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { Get_Location } from "api";
 import { ILocation } from "types";
@@ -15,17 +16,24 @@ const Location: FC<ILocationPageProps> = ({ isUpdating }) => {
   const { locationId } = useParams();
   const [updatingLocation, setUpdatingLocation] = useState<ILocation>();
 
-  const { isLoading } = useQuery("location", () => Get_Location(locationId ? +locationId : 1), {
-    enabled: isUpdating,
-    onSuccess: (res) => {
-      console.log(res);
-      setUpdatingLocation(res.data);
+  const { isLoading, data } = useQuery(
+    "location",
+    () => Get_Location(locationId ? +locationId : 1),
+    {
+      enabled: isUpdating,
+      onSuccess: (res) => {
+        console.log(res);
+        setUpdatingLocation(res.data);
+      }
     }
-  });
+  );
 
   return (
     <Container>
-      <LocationForm isUpdating={isUpdating} updatingLocation={updatingLocation} />
+      {isLoading && <ClipLoader color="#ffffff" />}
+      {(data || !isUpdating) && (
+        <LocationForm isUpdating={isUpdating} updatingLocation={updatingLocation} />
+      )}
     </Container>
   );
 };

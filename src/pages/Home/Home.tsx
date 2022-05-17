@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useQuery } from "react-query";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { Get_Locations } from "api";
 import Container from "components/Container/Container";
@@ -11,8 +12,8 @@ const Home: FC = () => {
   return (
     <Container>
       <>
-        {isLoading && <div>Loading...</div>}
-        {error && <div>Error!</div>}
+        {isLoading && <ClipLoader color="#ffffff" />}
+        {error && <div>Somthing went wrong!</div>}
         {data?.data?.length && <LocationPinner locations={data?.data || []} />}
       </>
     </Container>
