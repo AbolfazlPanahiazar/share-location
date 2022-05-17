@@ -16,11 +16,17 @@ interface ILocationFormProps {
 
 export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocation }) => {
   const navigate = useNavigate();
-  const { handleSubmit, reset, setValue, getValues } = useForm<ILocation>({
+  const { handleSubmit, reset, setValue, getValues, watch } = useForm<ILocation>({
     defaultValues: {
       type: LocationType.HOME
     }
   });
+
+  const title = watch("title");
+  const type = watch("type");
+  const lat = +watch("lat");
+  const long = +watch("long");
+  const logo = watch("logo");
 
   const { mutate: createLocation } = useMutation(Create_Location, {
     onSuccess: () => {
@@ -48,7 +54,7 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
         ...updatingLocation
       });
     }
-  }, []);
+  }, [updatingLocation]);
 
   const onSubmit: SubmitHandler<ILocation> = (data) => {
     // validate data
@@ -74,12 +80,12 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
     <Form onSubmit={handleSubmit(onSubmit)}>
       <TextInput
         placeholder="Location Title:"
-        value={getValues("title")}
+        value={title}
         onChange={(e) => setValue("title", e.target.value)}
       />
       <SelectInput
         placeholder="Location Type:"
-        value={getValues("type")}
+        value={type}
         defaultValue={LocationType.HOME}
         onChange={(e) => setValue("type", e.target.value as LocationType)}>
         <option value={LocationType.HOME}>Home</option>
@@ -90,8 +96,13 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
         placeholder="Select your location:"
         locationType={LocationType.HOME}
         handleSelectLocation={handleSelectLocation}
+        position={new LatLng(lat || 0, long || 0)}
       />
-      <ImageInput placeholder="Upload a photo:" handleSelectLogo={handleSelectLogo} />
+      <ImageInput
+        placeholder="Upload a photo:"
+        handleSelectLogo={handleSelectLogo}
+        imageUrl={logo}
+      />
       <Button type="submit">Submit</Button>
     </Form>
   );

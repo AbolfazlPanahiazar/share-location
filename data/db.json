@@ -9,7 +9,7 @@
       "id": 1
     },
     {
-      "title": "Tehroonchi",
+      "title": "Tehroonchissf",
       "type": "BUSINESS",
       "lat": 35.74085210195421,
       "long": 51.42464012935245,
@@ -17,10 +17,10 @@
       "id": 2
     },
     {
-      "type": "HOME",
-      "title": "My apartment",
-      "lat": 35.744892625050824,
-      "long": 51.40900036951309,
+      "type": "FAIR",
+      "title": "My apartment12",
+      "lat": 35.72580283278736,
+      "long": 51.4047037321946,
       "logo": "https://picsum.photos/200",
       "id": 3
     }

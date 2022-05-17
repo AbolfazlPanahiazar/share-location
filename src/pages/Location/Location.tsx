@@ -15,22 +15,13 @@ const Location: FC<ILocationPageProps> = ({ isUpdating }) => {
   const { locationId } = useParams();
   const [updatingLocation, setUpdatingLocation] = useState<ILocation>();
 
-  const { refetch, isLoading } = useQuery(
-    "location",
-    () => Get_Location(locationId ? +locationId : 1),
-    {
-      enabled: false,
-      onSuccess: (res) => {
-        setUpdatingLocation(res.data);
-      }
+  const { isLoading } = useQuery("location", () => Get_Location(locationId ? +locationId : 1), {
+    enabled: isUpdating,
+    onSuccess: (res) => {
+      console.log(res);
+      setUpdatingLocation(res.data);
     }
-  );
-
-  useEffect(() => {
-    if (isUpdating && locationId) {
-      refetch();
-    }
-  }, []);
+  });
 
   return (
     <Container>

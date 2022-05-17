@@ -6,9 +6,10 @@ import { InputContainer, InputLabel, Section, SelectedImage } from "./imageInput
 interface IImageInputProps {
   placeholder: string;
   handleSelectLogo: (l: string) => void;
+  imageUrl: string;
 }
 
-export const ImageInput: FC<IImageInputProps> = ({ placeholder, handleSelectLogo }) => {
+export const ImageInput: FC<IImageInputProps> = ({ placeholder, handleSelectLogo, imageUrl }) => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
     accept: {
@@ -32,8 +33,8 @@ export const ImageInput: FC<IImageInputProps> = ({ placeholder, handleSelectLogo
       <Section>
         <div {...getRootProps({ className: "dropzone" })}>
           <input {...getInputProps()} />
-          {acceptedFiles.length > 0 ? (
-            <SelectedImage src={URL.createObjectURL(acceptedFiles[0])} alt="Uploaded" />
+          {imageUrl ? (
+            <SelectedImage src={imageUrl} alt="Uploaded" />
           ) : (
             <p>Drag and drop some files here, or click to select files</p>
           )}

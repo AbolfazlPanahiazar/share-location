@@ -10,12 +10,14 @@ interface IMapInputProps {
   placeholder: string;
   locationType: LocationType;
   handleSelectLocation: (sl: LatLng) => void;
+  position: LatLng;
 }
 
 export const MapInput: FC<IMapInputProps> = ({
   placeholder,
   locationType,
-  handleSelectLocation
+  handleSelectLocation,
+  position
 }) => {
   return (
     <InputContainer>
@@ -29,7 +31,11 @@ export const MapInput: FC<IMapInputProps> = ({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <LocationMarker locationType={locationType} handleSelectLocation={handleSelectLocation} />
+        <LocationMarker
+          locationType={locationType}
+          handleSelectLocation={handleSelectLocation}
+          position={position}
+        />
       </MapContainer>
     </InputContainer>
   );
@@ -38,17 +44,19 @@ export const MapInput: FC<IMapInputProps> = ({
 interface ILocationMarkerProps {
   locationType: LocationType;
   handleSelectLocation: (sl: LatLng) => void;
+  position: LatLng;
 }
 
-const LocationMarker: FC<ILocationMarkerProps> = ({ locationType, handleSelectLocation }) => {
-  const [position, setPosition] = useState<LatLng | null>(null);
+const LocationMarker: FC<ILocationMarkerProps> = ({
+  locationType,
+  handleSelectLocation,
+  position
+}) => {
   const map = useMapEvents({
     click(e) {
-      setPosition(e.latlng);
       handleSelectLocation(e.latlng);
     },
     locationfound(e) {
-      setPosition(e.latlng);
       handleSelectLocation(e.latlng);
       map.flyTo(e.latlng, map.getZoom());
     }
