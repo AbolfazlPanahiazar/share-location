@@ -13,7 +13,7 @@ const Home: FC = () => {
       <>
         {isLoading && <div>Loading...</div>}
         {error && <div>Error!</div>}
-        {data && <LocationPinner locations={data?.data || []} />}
+        {data?.data?.length && <LocationPinner locations={data?.data || []} />}
       </>
     </Container>
   );

@@ -1,7 +1,9 @@
 import { FC, ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastContainer } from "react-toastify";
 import "leaflet/dist/leaflet.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import ErrorBoundary from "components/ErrorBoundary/ErrorBoundary";
 
@@ -16,6 +18,7 @@ const Provider: FC<IProviderProps> = ({ children }) => {
     <ErrorBoundary>
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        <ToastContainer />
       </BrowserRouter>
     </ErrorBoundary>
   );

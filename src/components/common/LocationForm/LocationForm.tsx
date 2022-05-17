@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
 import { LatLng } from "leaflet";
+import { toast } from "react-toastify";
 
 import { Create_Location, Update_Location } from "api";
 import { TextInput, SelectInput, MapInput, ImageInput, Button } from "components/common";
@@ -31,23 +32,21 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
 
   const { mutate: createLocation } = useMutation(Create_Location, {
     onSuccess: () => {
-      // toast success
-      window.location.replace("/");
+      toast.success("New location Added");
+      navigate("/");
     },
     onError: (e) => {
-      // toast error
-      console.log(e);
+      toast.error("Something went wrong");
     }
   });
 
   const { mutate: editLocation } = useMutation(Update_Location, {
     onSuccess: () => {
-      // toast success
-      window.location.replace("/");
+      toast.success("Location Updated");
+      navigate("/");
     },
     onError: (e) => {
-      // toast error
-      console.log(e);
+      toast.error("Something went wrong");
     }
   });
 
@@ -60,7 +59,10 @@ export const LocationForm: FC<ILocationFormProps> = ({ isUpdating, updatingLocat
   }, [updatingLocation]);
 
   const onSubmit: SubmitHandler<ILocation> = (data) => {
-    // validate data
+    if (!data.title || !data.type || !data.lat || !data.long || !data.logo) {
+      toast.error("Make sure all inputs are filled.");
+      return;
+    }
     if (isUpdating) {
       editLocation({ ...data });
     } else {

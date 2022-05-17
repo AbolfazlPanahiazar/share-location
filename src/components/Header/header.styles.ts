@@ -27,6 +27,7 @@ export const NavigationLink = styled.span`
   margin: 0 0.5rem;
   color: #e3e3e3;
   transition: all ease-in-out 0.2s;
+  text-decoration: underline;
   &:hover {
     color: #888;
   }
